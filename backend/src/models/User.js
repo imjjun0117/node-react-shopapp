@@ -61,6 +61,15 @@ userSchema.methods.createJwt = async function(userData){
   return accessToken;
 }
 
+//전달 받은 토큰을 복호화
+userSchema.statics.decodeToken = async function(token){
+
+  const decoded = await jwt.verify(token, process.env.SECRET_KEY);
+
+  return decoded
+
+}
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

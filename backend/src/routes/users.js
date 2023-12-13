@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User')
-
+const auth = require('../middleware/auth')
 
 router.post('/register', async(req, res, next) => {
   
@@ -70,6 +70,19 @@ router.post('/login', async(req, res, next) => {
 
 })
 
+router.get('/auth', auth, (req, res, next) => {
+
+  let userData = req.user;
+
+  return res.json({
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name,
+    role: req.user.role,
+    image: req.user.image,
+  })
+
+})
 
 
 module.exports = router;
