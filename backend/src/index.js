@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json())
 //Routes
 app.use('/users', require('./routes/users'))
+app.use('/products', require('./routes/products'))
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
@@ -37,8 +38,6 @@ app.post('/', (req, res) => {
   res.json(req.body)  
 
 })
-
-
 
 const port = 8080
 

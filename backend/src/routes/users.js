@@ -80,7 +80,19 @@ router.get('/auth', auth, (req, res, next) => {
     name: req.user.name,
     role: req.user.role,
     image: req.user.image,
+    cart: req.user.cart,
+    history: req.user.history
   })
+
+})
+
+router.post('/logout', auth , (req, res, next) => {
+
+  try{
+    return res.sendStatus(200);
+  }catch(error){
+    next(error);
+  }//end catch
 
 })
 
